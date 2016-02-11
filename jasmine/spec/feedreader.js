@@ -91,16 +91,10 @@ $(function() {
         */
 
         it('should toggle visibility', function(){
-            var slidingMenu = $('.slide-menu');
-            /*$('.icon-list').click(function(){
-                expect(slidingMenu.offset().left).toBe(0);
-            });*/
-            if($('body').attr('class') == ''){
-                expect(slidingMenu.offset().left).toBe(0);    
-            }
-            if($('body').attr('class') == 'menu-hidden'){
-                expect(slidingMenu.offset().left).toBe(-192);    
-            }   
+            $('.icon-list').click();
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+            $('.icon-list').click();
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
     });      
 
@@ -122,7 +116,7 @@ $(function() {
         });
 
         it('loads feed', function(done){
-            expect($('.feed').find('a').length>=1).toBe(true);
+            expect($('.feed .entry-link').length).toBeGreaterThan(0);
             done();
         });
 
@@ -162,8 +156,6 @@ $(function() {
          * that the content actually changes.
          */
         it('changes content', function(done) {
-            console.log(before);
-            console.log(after);
             expect(before != after).toBe(true);
             done();
         });
